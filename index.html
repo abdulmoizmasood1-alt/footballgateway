@@ -328,13 +328,13 @@
   }
 
   /* TRUST GRID */
-  .trust-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:44px;}
+  .trust-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:44px;}
   .trust-card{border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; transition:transform .25s cubic-bezier(.34,1.56,.64,1), border-color .25s ease;}
   .trust-card:hover{transform:translateY(-6px); border-color:var(--blue);}
   .trust-card .mark{width:34px; height:34px; border-radius:10px; background:rgba(62,123,250,.14); color:var(--blue-soft); display:flex; align-items:center; justify-content:center; font-family:'Archivo',sans-serif; font-weight:900; font-size:.85rem; margin-bottom:16px;}
   .trust-card h3{font-size:1.02rem; margin-bottom:8px;}
   .trust-card p{font-size:.88rem; margin:0;}
-  @media (max-width:900px){.trust-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:900px){.trust-grid{grid-template-columns:1fr;}}
   @media (max-width:560px){.trust-grid{grid-template-columns:1fr;}}
 
   /* FAQ */
@@ -400,9 +400,8 @@
       <a href="#home">Home</a>
       <a href="#players">Players</a>
       <a href="#coaches">Coaches</a>
-      <a href="#trials">Trials</a>
+      <a href="#trials">Guidance</a>
       <a href="#consultation">Consultation</a>
-      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
     <a class="btn solid nav-cta desktop" href="#" data-modal="register">Register Your Profile →</a>
@@ -412,9 +411,8 @@
     <a href="#home">Home</a>
     <a href="#players">Players</a>
     <a href="#coaches">Coaches</a>
-    <a href="#trials">Trials</a>
+    <a href="#trials">Guidance</a>
     <a href="#consultation">Consultation</a>
-    <a href="#about">About</a>
     <a href="#contact">Contact</a>
     <a href="#" data-modal="register" style="color:var(--blue-soft); font-weight:600;">Register Your Profile →</a>
   </div>
@@ -450,15 +448,6 @@
       <div class="eyebrow">For players</div>
       <h2>Explore playing opportunities and take your next step on the pitch.</h2>
       <p>Whether you're looking for your first international experience or your next club opportunity, FootballGateway helps you prepare for the journey.</p>
-      <ul class="checklist">
-        <li>Player profile assessment</li>
-        <li>Video analysis</li>
-        <li>Career pathway guidance</li>
-        <li>Trial opportunities</li>
-        <li>Club opportunities</li>
-        <li>Pre-travel preparation</li>
-        <li>Support throughout the process</li>
-      </ul>
       <a class="btn solid" href="#trials">Explore Player Pathways →</a>
     </div>
     <div class="panel-visual reveal-right reveal">
@@ -476,54 +465,18 @@
   <div class="wrap panel">
     <div class="panel-visual reveal-left reveal">
       <div class="stat-block">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Levels of Support</div>
-        <div class="stat-chips"><span>Consultation</span><span>Pathway</span><span>International</span></div>
-        <div class="stat-sub">Across 2 destinations — Malta &amp; Cyprus</div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Ways to Start</div>
+        <div class="stat-chips"><span>Consultation</span><span>Coaching Support</span></div>
+        <div class="stat-sub">Tailored to you — no fixed packages</div>
       </div>
     </div>
     <div class="reveal-right reveal">
       <div class="eyebrow">For coaches</div>
       <h2>Build your coaching career and explore international opportunities.</h2>
       <p>Football opportunities aren't only for players. FootballGateway provides career consultancy for coaches exploring international pathways in Malta, Cyprus and beyond.</p>
-      <ul class="checklist">
-        <li>Coaching background &amp; qualifications review</li>
-        <li>Career pathway guidance</li>
-        <li>Coaching CV / profile preparation</li>
-        <li>Identification of relevant opportunities</li>
-        <li>Guidance approaching clubs and organisations</li>
-        <li>Interview and application preparation</li>
-      </ul>
       <a class="btn solid" href="#coaching">Explore Coaching Pathways →</a>
     </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="scene">
-    <svg class="ring parallax" data-speed="0.10" style="top:-8%; right:-6%; width:340px;" viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" fill="none" stroke="#7FA6FF" stroke-width="2"/></svg>
-    <svg class="parallax" data-speed="-0.14" style="bottom:6%; left:4%; width:56px;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#7FA6FF" stroke-width="4"/><path d="M50 8 L50 92 M8 50 L92 50" stroke="#7FA6FF" stroke-width="2" opacity=".4"/></svg>
-    <svg class="parallax" data-speed="0.18" style="top:38%; left:46%; width:30px;" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="#7FA6FF" opacity=".5"/></svg>
-  </div>
-  <div class="wrap">
-    <div class="eyebrow">Where</div>
-    <h2>Explore football in a new country.</h2>
-    <p>Two destinations. Different football environments. New possibilities.</p>
-    <div class="dest-grid">
-      <div class="dest reveal pop stagger" style="--d:0ms">
-        <div class="flag">🇲🇹</div>
-        <h3>Malta</h3>
-        <p>Explore football opportunities in Malta and discover a pathway into a growing international football environment.</p>
-        <a class="btn ghost" href="#consultation">Explore Malta →</a>
-      </div>
-      <div class="dest reveal pop stagger" style="--d:120ms">
-        <div class="flag">🇨🇾</div>
-        <h3>Cyprus</h3>
-        <p>Explore opportunities in Cyprus and understand what the football pathway could look like for your profile.</p>
-        <a class="btn ghost" href="#consultation">Explore Cyprus →</a>
-      </div>
-    </div>
-    <p class="disclaimer">These descriptions are factual and general — they do not imply that either country guarantees a particular level of football or employment.</p>
   </div>
 </section>
 
@@ -534,24 +487,23 @@
     <svg class="ring parallax" data-speed="0.08" style="bottom:-14%; right:-8%; width:300px;" viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" fill="none" stroke="#7FA6FF" stroke-width="2"/></svg>
   </div>
   <div class="wrap">
-    <div class="eyebrow">Trials &amp; Consultation — for players</div>
-    <h2>One pathway: a trial, tailored to you.</h2>
-    <p>FootballGateway doesn't sell tiered trial packages. What's included — number of trials, accommodation, transport, flights — is scoped with you directly, based on your profile and situation.</p>
+    <div class="eyebrow">Guidance — for players</div>
+    <h2>Direction specific to you — so you can do it yourself.</h2>
+    <p>The core of what we offer is guidance: specific direction on your profile, preparation and how to approach clubs directly — no agent or scout needed. If you'd also like 1–2 trials arranged, that's a separate step we explain fully during your consultation. There's no fixed timeline for it — it depends on your situation.</p>
     <div class="tier-grid single">
       <div class="tier featured reveal pop">
-        <div class="tier-name">PLAYER TRIAL SUPPORT</div>
-        <div class="tier-desc">Assessed, prepared and supported through a real trial opportunity</div>
+        <div class="tier-name">PLAYER GUIDANCE</div>
+        <div class="tier-desc">Direction specific to you, so you're capable of handling the process yourself</div>
         <ul>
           <li>Player profile assessment</li>
           <li>Video analysis</li>
-          <li>Trial opportunity arranged</li>
-          <li>Pre-trial guidance</li>
-          <li>Support throughout the process</li>
+          <li>Personalised guidance on approaching clubs yourself</li>
+          <li>Preparation support throughout</li>
+          <li>Optional: 1–2 trials arranged separately, explained on your call</li>
         </ul>
-        <a class="btn solid" href="#" data-modal="trial">Enquire About a Trial →</a>
       </div>
     </div>
-    <p class="disclaimer">Pricing is discussed during your consultation, based on your goals and what the trial involves. Trial opportunities are subject to player assessment, club availability and acceptance. A trial does not guarantee a contract or employment.</p>
+    <p class="disclaimer">Pricing is discussed during your consultation, based on your goals. Trials are optional, arranged separately from the core guidance, and don't follow a fixed timeline. A trial does not guarantee a contract or employment.</p>
   </div>
 </section>
 
@@ -562,48 +514,20 @@
   </div>
   <div class="wrap">
     <div class="eyebrow">Coaching services — for coaches</div>
-    <h2>Career consultancy &amp; opportunities.</h2>
-    <p>FootballGateway doesn't sell packaged job placements for coaches — we help you prepare, navigate and connect with international opportunities.</p>
-    <div class="tier-grid">
-      <div class="tier reveal pop stagger" style="--d:0ms">
-        <div class="tier-name">COACHING CONSULTATION</div>
-        <div class="tier-desc">A focused conversation about your coaching career</div>
+    <h2>One pathway: career support, tailored to you.</h2>
+    <p>FootballGateway doesn't sell packaged job placements for coaches. What's included — assessment, profile preparation, ongoing guidance — is scoped with you directly, based on your background and goals.</p>
+    <div class="tier-grid single">
+      <div class="tier featured reveal pop">
+        <div class="tier-name">COACHING SUPPORT</div>
+        <div class="tier-desc">Assessed, prepared and supported as you explore coaching opportunities</div>
         <ul>
-          <li>Career assessment</li>
-          <li>Coaching background review</li>
-          <li>Qualifications review</li>
-          <li>Career goals</li>
-          <li>Malta / Cyprus football landscape</li>
-          <li>Personalised career guidance</li>
-        </ul>
-        <a class="btn ghost" href="#" data-modal="coachconsult">Enquire →</a>
-      </div>
-      <div class="tier featured reveal pop stagger" style="--d:120ms">
-        <div class="tier-name">COACHING PATHWAY</div>
-        <div class="tier-desc">Everything in Consultation, plus hands-on preparation</div>
-        <ul>
-          <li>Everything in Consultation</li>
-          <li>Professional coaching profile</li>
-          <li>CV / profile review</li>
+          <li>Career &amp; qualifications assessment</li>
+          <li>Coaching profile &amp; CV preparation</li>
           <li>Identification of relevant opportunities</li>
           <li>Guidance approaching clubs / organisations</li>
-          <li>Application preparation</li>
-          <li>Interview preparation</li>
-        </ul>
-        <a class="btn solid" href="#" data-modal="coachpathway">Enquire →</a>
-      </div>
-      <div class="tier reveal pop stagger" style="--d:240ms">
-        <div class="tier-name">INTERNATIONAL COACHING SUPPORT</div>
-        <div class="tier-desc">Ongoing support for international opportunities</div>
-        <ul>
-          <li>Everything above</li>
+          <li>Interview &amp; application preparation</li>
           <li>Ongoing career guidance</li>
-          <li>Opportunity monitoring</li>
-          <li>Support communicating with clubs / organisations</li>
-          <li>Preparation for international opportunities</li>
-          <li>Travel and relocation guidance where relevant</li>
         </ul>
-        <a class="btn ghost" href="#" data-modal="coachintl">Enquire →</a>
       </div>
     </div>
     <p class="disclaimer">Pricing is discussed during your consultation, based on your goals and budget. FootballGateway provides guidance, preparation and opportunity support — not guaranteed placement, interviews or contracts.</p>
@@ -619,14 +543,13 @@
     <div class="reveal-left reveal">
       <div class="eyebrow">Not sure where to start?</div>
       <h2>Sometimes the best first step is simply a conversation.</h2>
-      <p>Speak with FootballGateway about your football background, goals and potential pathways in Malta, Cyprus or abroad.</p>
+      <p>Speak with FootballGateway about your football background, goals and potential pathways in Malta, Cyprus or abroad. If arranging a trial is something you're interested in, we'll walk you through how that works separately — there's no fixed timeline for it.</p>
       <p class="disclaimer">Consultation does not guarantee a trial, contract, employment or placement.</p>
     </div>
     <div class="consult-card reveal-right reveal pop">
-      <div class="consult-meta">20–40 minutes · Phone or Video Call</div>
+      <div class="consult-meta">Phone or Video Call</div>
       <div class="consult-price">€50</div>
-      <p style="font-size:.88rem; margin-top:10px;">After submitting your request, we'll contact you by phone or WhatsApp with payment details and arrange your consultation.</p>
-      <a class="btn solid" href="#" data-modal="consultation" style="margin-top:8px;">Request a Consultation →</a>
+      <p style="font-size:.88rem; margin-top:10px;">After submitting your request, we'll contact you by phone with payment details and arrange your consultation.</p>
     </div>
   </div>
 </section>
@@ -647,28 +570,23 @@
 <section class="alt">
   <div class="wrap">
     <div class="eyebrow">Why FootballGateway</div>
-    <h2>A transparent, personal approach to your football career.</h2>
-    <p>No mass placement lists, no guarantees we can't back up — just honest guidance from first contact to your next step.</p>
+    <h2>Guidance that makes you self-sufficient.</h2>
+    <p>Our goal isn't to do it for you — it's to give you direction specific to your situation, so you're capable of handling the process yourself, without paying agents or scouts along the way.</p>
     <div class="trust-grid">
       <div class="trust-card reveal pop stagger" style="--d:0ms">
         <div class="mark">01</div>
-        <h3>No empty promises</h3>
-        <p>We're upfront that a trial or consultation doesn't guarantee a contract — so you always know exactly what you're paying for.</p>
+        <h3>No agents, no scouts</h3>
+        <p>Our guidance is built so you can do this yourself — you're not paying anyone else a cut once you've had your consultation.</p>
       </div>
       <div class="trust-card reveal pop stagger" style="--d:80ms">
         <div class="mark">02</div>
-        <h3>One-to-one, not mass agency</h3>
-        <p>Every player and coach is assessed individually — your profile, goals and situation shape the guidance you get.</p>
+        <h3>Specific to you, not generic</h3>
+        <p>You get direction shaped around your own profile and goals — not a one-size-fits-all script.</p>
       </div>
       <div class="trust-card reveal pop stagger" style="--d:160ms">
         <div class="mark">03</div>
         <h3>Malta &amp; Cyprus focused</h3>
         <p>We work specifically within these two football environments, rather than spreading thin across every country.</p>
-      </div>
-      <div class="trust-card reveal pop stagger" style="--d:240ms">
-        <div class="mark">04</div>
-        <h3>Straightforward pricing</h3>
-        <p>Consultation pricing is fixed and visible upfront. Trial and coaching pricing is discussed openly before you commit to anything.</p>
       </div>
     </div>
   </div>
@@ -681,7 +599,7 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>Does FootballGateway guarantee a trial, contract or placement?</summary>
-        <div class="faq-answer">No. FootballGateway helps you prepare, understand your options and connect with opportunities — a trial or consultation is not a guarantee of a contract, interview or employment.</div>
+        <div class="faq-answer">No. FootballGateway gives you the guidance to handle your own pathway — a consultation or trial is not a guarantee of a contract, interview or employment.</div>
       </details>
       <details class="faq-item">
         <summary>What happens if I'm not selected for a trial?</summary>
@@ -689,19 +607,15 @@
       </details>
       <details class="faq-item">
         <summary>How does payment for the consultation work?</summary>
-        <div class="faq-answer">After you submit a request, FootballGateway contacts you by phone or WhatsApp to arrange payment and confirm your call time. Refund terms are confirmed at the time of booking.</div>
+        <div class="faq-answer">After you submit a request, FootballGateway contacts you by phone to arrange payment and confirm your call time. Refund terms are confirmed at the time of booking.</div>
       </details>
       <details class="faq-item">
-        <summary>What's included in a player trial?</summary>
-        <div class="faq-answer">It depends on your situation. Every trial starts with a profile assessment and video analysis, then we scope the rest — number of trials, accommodation, transport and flights — together with you during your consultation.</div>
+        <summary>Do you arrange trials?</summary>
+        <div class="faq-answer">Trials are separate from the core guidance we provide, and optional. If you'd like 1–2 trials arranged, we explain exactly how that works during your consultation — it's a different process with no fixed timeline, depending on your situation.</div>
       </details>
       <details class="faq-item">
         <summary>Do you work with players and coaches from any country?</summary>
         <div class="faq-answer">Yes — FootballGateway works with players and coaches from Europe, North &amp; South America, Australia and New Zealand looking to explore opportunities in Malta and Cyprus.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What happens after I register or book a consultation?</summary>
-        <div class="faq-answer">We review your profile and background, then get in touch to discuss your goals and the pathway that best fits your situation.</div>
       </details>
     </div>
   </div>
@@ -736,18 +650,17 @@
         <h4>PATHWAYS</h4>
         <a href="#players">Players</a>
         <a href="#coaches">Coaches</a>
-        <a href="#trials">Trials</a>
+        <a href="#trials">Guidance</a>
         <a href="#consultation">Consultation</a>
       </div>
       <div>
         <h4>COMPANY</h4>
-        <a href="#about">About FootballGateway</a>
         <a href="#contact">Contact</a>
       </div>
       <div>
         <h4>CONTACT</h4>
         <a href="mailto:footballgateway00@gmail.com">Email</a>
-        <a href="#">WhatsApp</a>
+        
       </div>
     </div>
     <div class="foot-bottom">
@@ -774,7 +687,7 @@
         <input type="email" id="fEmail" required>
       </div>
       <div class="modal-field">
-        <label for="fPhone">Phone / WhatsApp</label>
+        <label for="fPhone">Phone</label>
         <input type="tel" id="fPhone">
       </div>
       <div class="modal-field">
@@ -865,12 +778,7 @@
 
   const contexts = {
     register:      {tag:"Register Your Profile", title:"Let's get your profile started", sub:"Tell us a little about yourself — we'll follow up by email.", ph:"A little about your football background and goals..."},
-    player:         {tag:"Player Pathway", title:"Start your player pathway", sub:"Tell us about your position, experience and where you're playing now.", ph:"Position, experience level, current club..."},
-    coachconsult:   {tag:"Coaching Consultation", title:"Enquire — Coaching Consultation", sub:"Career assessment, qualifications review and personalised guidance.", ph:"Your coaching background, licences and current goals..."},
-    coachpathway:   {tag:"Coaching Pathway", title:"Enquire — Coaching Pathway", sub:"Profile, CV review and application/interview preparation.", ph:"Your coaching background, licences and current goals..."},
-    coachintl:      {tag:"International Coaching Support", title:"Enquire — International Coaching Support", sub:"Ongoing guidance for international coaching opportunities.", ph:"Your coaching background, licences and current goals..."},
-    consultation:   {tag:"Consultation Request", title:"Request a consultation", sub:"20–40 minutes · €50 · we'll contact you to arrange payment and a time.", ph:"Best time to reach you, and anything you'd like to cover..."},
-    trial:          {tag:"Player Trial", title:"Enquire about a trial", sub:"Tell us about your football background — we'll scope trials, travel and accommodation together.", ph:"Position, experience level, current club..."}
+    consultation:   {tag:"Consultation Request", title:"Request a consultation", sub:"€50 · we'll contact you to arrange payment and a time.", ph:"Best time to reach you, and anything you'd like to cover..."}
   };
 
   function openModal(type){
