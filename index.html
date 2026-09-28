@@ -193,12 +193,7 @@
   @media (max-width:860px){.tier-grid{grid-template-columns:1fr;}}
 
   /* CONSULTATION */
-  .consult{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:center;}
-  .consult-card{border:1px solid var(--line); border-radius:var(--radius); padding:34px; background:var(--navy); transition:transform .25s cubic-bezier(.34,1.56,.64,1);}
-  .consult-card:hover{transform:translateY(-6px);}
-  .consult-price{font-family:'Archivo',sans-serif; font-weight:900; font-size:2.4rem; color:var(--ink);}
-  .consult-meta{color:var(--blue-soft); font-size:.9rem; font-weight:600; margin-bottom:6px;}
-  @media (max-width:800px){.consult{grid-template-columns:1fr;}}
+  .consult{display:block;}
 
   /* HOW IT WORKS */
   .steps{display:grid; gap:0; margin-top:48px;}
@@ -503,7 +498,7 @@
         </ul>
       </div>
     </div>
-    <p class="disclaimer">Pricing is discussed during your consultation, based on your goals. Trials are optional, arranged separately from the core guidance, and don't follow a fixed timeline. A trial does not guarantee a contract or employment.</p>
+    <p class="disclaimer">Trials are optional, arranged separately from the core guidance, and don't follow a fixed timeline. A trial does not guarantee a contract or employment.</p>
   </div>
 </section>
 
@@ -530,7 +525,7 @@
         </ul>
       </div>
     </div>
-    <p class="disclaimer">Pricing is discussed during your consultation, based on your goals and budget. FootballGateway provides guidance, preparation and opportunity support — not guaranteed placement, interviews or contracts.</p>
+    <p class="disclaimer">FootballGateway provides guidance, preparation and opportunity support — not guaranteed placement, interviews or contracts.</p>
   </div>
 </section>
 
@@ -545,11 +540,6 @@
       <h2>Sometimes the best first step is simply a conversation.</h2>
       <p>Speak with FootballGateway about your football background, goals and potential pathways in Malta, Cyprus or abroad. If arranging a trial is something you're interested in, we'll walk you through how that works separately — there's no fixed timeline for it.</p>
       <p class="disclaimer">Consultation does not guarantee a trial, contract, employment or placement.</p>
-    </div>
-    <div class="consult-card reveal-right reveal pop">
-      <div class="consult-meta">Phone or Video Call</div>
-      <div class="consult-price">€50</div>
-      <p style="font-size:.88rem; margin-top:10px;">After submitting your request, we'll contact you by phone with payment details and arrange your consultation.</p>
     </div>
   </div>
 </section>
@@ -604,10 +594,6 @@
       <details class="faq-item">
         <summary>What happens if I'm not selected for a trial?</summary>
         <div class="faq-answer">We'll talk you through the outcome and what it means for your profile, and outline realistic next steps — whether that's preparing further or exploring a different opportunity.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How does payment for the consultation work?</summary>
-        <div class="faq-answer">After you submit a request, FootballGateway contacts you by phone to arrange payment and confirm your call time. Refund terms are confirmed at the time of booking.</div>
       </details>
       <details class="faq-item">
         <summary>Do you arrange trials?</summary>
@@ -778,7 +764,7 @@
 
   const contexts = {
     register:      {tag:"Register Your Profile", title:"Let's get your profile started", sub:"Tell us a little about yourself — we'll follow up by email.", ph:"A little about your football background and goals..."},
-    consultation:   {tag:"Consultation Request", title:"Request a consultation", sub:"€50 · we'll contact you to arrange payment and a time.", ph:"Best time to reach you, and anything you'd like to cover..."}
+    consultation:   {tag:"Consultation Request", title:"Request a consultation", sub:"We'll contact you to arrange a time that suits you.", ph:"Best time to reach you, and anything you'd like to cover..."}
   };
 
   function openModal(type){
