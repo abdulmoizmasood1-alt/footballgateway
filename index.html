@@ -93,6 +93,8 @@
   .btn.solid:hover{background:var(--blue-soft); border-color:var(--blue-soft); transform:scale(1.05); box-shadow:0 8px 22px rgba(62,123,250,.35);}
   .btn.ghost:hover{background:rgba(255,255,255,.06); transform:scale(1.05);}
   .btn:active{transform:scale(.97);}
+  button.btn{font-family:inherit; cursor:pointer; line-height:inherit;}
+  .btn.ghost{background:transparent;}
   .btn-row{display:flex; gap:14px; flex-wrap:wrap;}
 
   /* NAV */
@@ -319,6 +321,54 @@
   .modal-success .tick{font-size:2.2rem; margin-bottom:12px;}
   .modal-success h3{margin-bottom:8px;}
   .modal-form.hide{display:none;}
+
+  /* REVIEWS */
+  .reviews-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;}
+  .rating-summary{display:none; align-items:center; gap:14px;}
+  .rating-summary.show{display:flex;}
+  .rating-summary .big{font-family:'Archivo',sans-serif; font-weight:900; font-size:2.6rem; line-height:1; color:var(--ink);}
+  .rating-summary .count{font-size:.82rem; color:var(--ink-dim); margin-top:4px;}
+  .stars{color:var(--amber); letter-spacing:2px; font-size:1.05rem; line-height:1;}
+  .stars .off{color:var(--line);}
+  .review-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:40px;}
+  .review-card{border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px; background:var(--navy); display:flex; flex-direction:column; gap:14px;}
+  .review-card p{margin:0; font-size:.95rem; color:var(--ink);}
+  .review-meta{margin-top:auto; font-size:.82rem; color:var(--ink-dim);}
+  .review-meta strong{display:block; color:var(--ink); font-size:.92rem;}
+  .review-empty{border:1px dashed var(--line); border-radius:var(--radius); padding:38px 28px; text-align:center; margin-top:40px;}
+  .review-empty p{margin:0 auto;}
+  .review-actions{margin-top:28px;}
+  .review-form-wrap{display:none; margin-top:32px;}
+  .review-form-wrap.open{display:block;}
+  .review-form{border:1px solid var(--line); border-radius:var(--radius); padding:32px; background:var(--navy); max-width:640px;}
+  .review-form h3{font-size:1.3rem; margin:0 0 6px;}
+  .review-form .sub{font-size:.9rem; margin:0 0 22px;}
+  .rf-field{margin-bottom:18px;}
+  .rf-field label, .rf-legend{display:block; font-size:.8rem; font-weight:600; color:var(--ink-dim); margin-bottom:7px; padding:0;}
+  .rf-field input[type=text], .rf-field input[type=email], .rf-field select, .rf-field textarea{
+    width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
+    background:var(--navy-deep); color:var(--ink); font-family:'Inter',sans-serif; font-size:.92rem;
+  }
+  .rf-field input:focus, .rf-field select:focus, .rf-field textarea:focus{outline:none; border-color:var(--blue);}
+  .rf-field textarea{resize:vertical; min-height:110px;}
+  .rf-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .star-input{display:flex; flex-direction:row-reverse; justify-content:flex-end; gap:4px; border:0; padding:0; margin:0 0 18px; position:relative;}
+  .star-input input{position:absolute; opacity:0; width:1px; height:1px; pointer-events:none;}
+  .star-input label{font-size:2rem; color:var(--line); cursor:pointer; line-height:1; transition:color .15s ease, transform .15s ease;}
+  .star-input label:hover, .star-input label:hover ~ label, .star-input input:checked ~ label{color:var(--amber);}
+  .star-input label:hover{transform:scale(1.15);}
+  .star-input input:focus-visible + label{outline:2px solid var(--blue-soft); outline-offset:3px; border-radius:4px;}
+  .rf-consent{display:flex; gap:10px; align-items:flex-start; font-size:.82rem; color:var(--ink-dim); margin-bottom:20px;}
+  .rf-consent input{margin-top:3px; accent-color:var(--blue);}
+  .rf-hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .rf-error{display:none; color:#FF8A80; font-size:.84rem; margin:0 0 14px;}
+  .rf-error.show{display:block;}
+  .rf-thanks{display:none; border:1px solid var(--blue); border-radius:var(--radius); padding:28px; max-width:640px; background:rgba(62,123,250,.08);}
+  .rf-thanks.show{display:block;}
+  .rf-thanks h3{margin:0 0 6px; font-size:1.2rem;}
+  .rf-thanks p{margin:0;}
+  @media (max-width:900px){.review-grid{grid-template-columns:1fr;}}
+  @media (max-width:560px){.rf-row{grid-template-columns:1fr;} .review-form{padding:24px 20px;}}
   body.modal-locked{overflow:hidden;}
   body.intro-lock{overflow:hidden;}
 
@@ -613,7 +663,69 @@
   </div>
 </section>
 
-<section>
+<section id="reviews">
+  <div class="wrap">
+    <div class="reviews-head">
+      <div>
+        <div class="eyebrow">Reviews</div>
+        <h2>What our clients say.</h2>
+        <p>Honest feedback from players and coaches who have worked with FootballGateway.</p>
+      </div>
+      <div class="rating-summary" id="ratingSummary">
+        <div class="big" id="ratingAvg">5.0</div>
+        <div><div class="stars" id="ratingStars"></div><div class="count" id="ratingCount"></div></div>
+      </div>
+    </div>
+
+    <div class="review-grid" id="reviewGrid"></div>
+    <div class="review-empty" id="reviewEmpty">
+      <p>No reviews yet. If you've worked with FootballGateway, we'd love to hear how it went.</p>
+    </div>
+
+    <div class="review-actions">
+      <button type="button" class="btn ghost" id="reviewToggle">Share your experience</button>
+    </div>
+
+    <div class="review-form-wrap" id="reviewFormWrap">
+      <form class="review-form" id="reviewForm" novalidate>
+        <h3>Leave a review</h3>
+        <p class="sub" id="rSub">Reviews are checked before they appear on the site.</p>
+
+        <fieldset class="star-input" id="starInput">
+          <legend class="rf-legend" style="position:absolute; left:-9999px;">Your rating</legend>
+          <input type="radio" name="rating" id="star5" value="5"><label for="star5" title="5 stars">★</label>
+          <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 stars">★</label>
+          <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 stars">★</label>
+          <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 stars">★</label>
+          <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 star">★</label>
+        </fieldset>
+
+        <div class="rf-row">
+          <div class="rf-field"><label for="rName">Your name</label><input type="text" id="rName" maxlength="60" autocomplete="name"></div>
+          <div class="rf-field"><label for="rRole">I am a</label>
+            <select id="rRole"><option>Player</option><option>Coach</option><option>Parent / guardian</option></select>
+          </div>
+        </div>
+        <div class="rf-field"><label for="rEmail">Email <span style="font-weight:400;">(never published, only used to verify your review)</span></label><input type="email" id="rEmail" autocomplete="email"></div>
+        <div class="rf-field"><label for="rText">Your review</label><textarea id="rText" maxlength="700" placeholder="What was your experience like?"></textarea></div>
+        <div class="rf-hp" aria-hidden="true"><label>Leave empty<input type="text" id="rHp" tabindex="-1" autocomplete="off"></label></div>
+
+        <label class="rf-consent"><input type="checkbox" id="rConsent"><span>I agree that FootballGateway may publish my name and review on this website.</span></label>
+
+        <p class="rf-error" id="rError"></p>
+        <button type="submit" class="btn solid" id="rSubmit">Submit review</button>
+        <button type="button" class="btn ghost" id="rCancel" style="margin-left:8px;">Cancel</button>
+      </form>
+    </div>
+
+    <div class="rf-thanks" id="rThanks">
+      <h3>Thank you for your review</h3>
+      <p id="rThanksText">We've received it and it will appear on the site once it has been checked.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
   <div class="wrap">
     <div class="eyebrow">Questions</div>
     <h2>Frequently asked questions.</h2>
@@ -868,6 +980,167 @@
       submitBtn.textContent = 'Send →';
     });
   });
+  // ---- Reviews ----
+  // Paste your Google Apps Script web app URL (it ends in /exec) between the quotes to make
+  // reviews publish automatically. While it is empty, reviews are emailed to you instead.
+  const REVIEWS_API = "https://script.google.com/macros/s/AKfycbyRA54N3uAMvVQWlxn65YYkOHRrhSIiqRQj-bKCmcyh2OigYc3Hy5pBxYYIr7GKwxHS5w/exec";
+
+  // Optional hand-picked reviews, shown in addition to the automatic ones.
+  const REVIEWS = [
+  ];
+
+  (function(){
+    const auto = !!REVIEWS_API;
+    const grid = document.getElementById('reviewGrid');
+    const empty = document.getElementById('reviewEmpty');
+    const summary = document.getElementById('ratingSummary');
+    const wrap = document.getElementById('reviewFormWrap');
+    const toggle = document.getElementById('reviewToggle');
+    const form = document.getElementById('reviewForm');
+    const err = document.getElementById('rError');
+    const btn = document.getElementById('rSubmit');
+    const thanks = document.getElementById('rThanks');
+    let apiReviews = [];
+
+    if(auto) document.getElementById('rSub').textContent = 'Your review will appear on the site straight away.';
+
+    function fillStars(el, n){
+      el.textContent = '';
+      el.setAttribute('aria-label', n + ' out of 5 stars');
+      for(let i = 1; i <= 5; i++){
+        const sp = document.createElement('span');
+        sp.textContent = '★';
+        if(i > n) sp.className = 'off';
+        el.appendChild(sp);
+      }
+    }
+
+    function render(){
+      const list = REVIEWS.concat(apiReviews);
+      grid.textContent = '';
+      if(!list.length){
+        empty.style.display = '';
+        summary.classList.remove('show');
+        return;
+      }
+      empty.style.display = 'none';
+      let total = 0;
+      list.forEach(r => {
+        total += r.rating;
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        const st = document.createElement('div'); st.className = 'stars'; fillStars(st, r.rating);
+        const p = document.createElement('p'); p.textContent = r.text;
+        const meta = document.createElement('div'); meta.className = 'review-meta';
+        const strong = document.createElement('strong'); strong.textContent = r.name;
+        meta.appendChild(strong);
+        meta.appendChild(document.createTextNode(r.role || ''));
+        card.appendChild(st); card.appendChild(p); card.appendChild(meta);
+        grid.appendChild(card);
+      });
+      const avg = total / list.length;
+      document.getElementById('ratingAvg').textContent = avg.toFixed(1);
+      fillStars(document.getElementById('ratingStars'), Math.round(avg));
+      document.getElementById('ratingCount').textContent = 'Based on ' + list.length + (list.length === 1 ? ' review' : ' reviews');
+      summary.classList.add('show');
+    }
+
+    function load(){
+      if(!auto) return Promise.resolve();
+      const url = REVIEWS_API + (REVIEWS_API.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now();
+      return fetch(url).then(r => r.json()).then(j => {
+        apiReviews = (j.reviews || [])
+          .filter(r => r && r.name && r.text && r.rating >= 1 && r.rating <= 5)
+          .map(r => ({name:String(r.name).slice(0,60), role:String(r.role||'').slice(0,30), rating:Math.round(r.rating), text:String(r.text).slice(0,700)}));
+      });
+    }
+
+    // Avoid flashing "No reviews yet" while the real ones are loading.
+    if(auto){ empty.style.display = 'none'; load().catch(() => {}).then(render); }
+    else render();
+
+    toggle.addEventListener('click', () => {
+      wrap.classList.add('open');
+      toggle.style.display = 'none';
+      wrap.scrollIntoView({behavior:'smooth', block:'nearest'});
+    });
+    document.getElementById('rCancel').addEventListener('click', () => {
+      wrap.classList.remove('open');
+      toggle.style.display = '';
+    });
+
+    function showErr(msg){ err.textContent = msg; err.classList.add('show'); }
+    function finish(published, review){
+      wrap.classList.remove('open');
+      document.getElementById('rThanksText').textContent = published
+        ? 'Your review is now on the site.'
+        : "We've received it and it will appear on the site once it has been checked.";
+      thanks.classList.add('show');
+      form.reset();
+      if(published && review){ apiReviews.unshift(review); }
+      render();
+    }
+    function resetBtn(){ btn.disabled = false; btn.textContent = 'Submit review'; }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      err.classList.remove('show');
+      const rating = form.querySelector('input[name="rating"]:checked');
+      const name = document.getElementById('rName').value.trim();
+      const email = document.getElementById('rEmail').value.trim();
+      const text = document.getElementById('rText').value.trim();
+      const role = document.getElementById('rRole').value;
+      if(!rating) return showErr('Please choose a star rating.');
+      if(!name) return showErr('Please enter your name.');
+      if(!/^\S+@\S+\.\S+$/.test(email)) return showErr('Please enter a valid email address.');
+      if(text.length < 10) return showErr('Please write a little more about your experience.');
+      if(!document.getElementById('rConsent').checked) return showErr('Please tick the box to agree to publishing your review.');
+      const hp = document.getElementById('rHp').value;
+      if(hp) return; // spam trap
+
+      btn.disabled = true; btn.textContent = 'Sending…';
+      const stars = parseInt(rating.value, 10);
+
+      if(auto){
+        // Automatic mode: save to the Google Sheet and show it straight away.
+        const body = new URLSearchParams({name:name, role:role, rating:String(stars), text:text, email:email, website:hp});
+        fetch(REVIEWS_API, {method:'POST', body:body})
+          .then(r => r.json())
+          .then(j => {
+            if(!j.ok) throw {server: j.error || 'Something went wrong. Please try again.'};
+            finish(!!j.published, {name:name, role:role, rating:stars, text:text});
+          })
+          .catch(ex => {
+            if(ex && ex.server) return showErr(ex.server);
+            // We couldn't read the reply. The review may still have been saved, so check the list.
+            return new Promise(res => setTimeout(res, 1500))
+              .then(load)
+              .then(() => {
+                if(apiReviews.some(r => r.name === name && r.text === text)) finish(true, null);
+                else showErr('Something went wrong sending that. Please try again, or email footballgateway00@gmail.com.');
+              })
+              .catch(() => showErr('Something went wrong sending that. Please try again, or email footballgateway00@gmail.com.'));
+          })
+          .then(resetBtn, resetBtn);
+        return;
+      }
+
+      // Email-only mode (no REVIEWS_API set): send to the inbox for manual approval.
+      const data = new FormData();
+      data.append('type', 'REVIEW');
+      data.append('rating', stars + ' / 5');
+      data.append('name', name);
+      data.append('role', role);
+      data.append('email', email);
+      data.append('review', text);
+      data.append('consent_to_publish', 'yes');
+      data.append('_subject', 'FootballGateway — New review (' + stars + '★) — ' + name);
+      fetch(FORMSPREE_ENDPOINT, {method:'POST', body:data, headers:{'Accept':'application/json'}})
+        .then(res => { if(!res.ok) throw new Error('send failed'); finish(false, null); })
+        .catch(() => showErr('Something went wrong sending that. Please try again, or email footballgateway00@gmail.com.'))
+        .then(resetBtn, resetBtn);
+    });
+  })();
 </script>
 </body>
 </html>
