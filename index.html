@@ -309,6 +309,13 @@
     outline:none; border-color:#3E7BFA; background:#fff;
   }
   .modal-field textarea{resize:vertical; min-height:80px;}
+  .modal-field input[type=file]{padding:9px 10px; cursor:pointer; font-size:.85rem;}
+  .modal-field input[type=file]::file-selector-button{
+    margin-right:10px; border:0; border-radius:999px; padding:7px 14px;
+    background:#E4ECFF; color:#2F6FED; font-weight:600; font-size:.8rem; cursor:pointer;
+  }
+  .file-hint{margin:6px 0 0; font-size:.75rem; color:#7B8798;}
+  .file-hint.err{color:#C0392B;}
   .modal-submit{
     width:100%; border:0; border-radius:999px; padding:14px;
     background:#2F6FED; color:#fff; font-weight:700; font-size:.95rem;
@@ -824,6 +831,12 @@
         <textarea id="fMsg" placeholder="A little about your football background and goals..."></textarea>
       </div>
 
+      <div class="modal-field">
+        <label for="fFile">Attach your CV or a photo <span style="font-weight:400; color:#7B8798;">(optional)</span></label>
+        <input type="file" id="fFile" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+        <p class="file-hint" id="fileHint">PDF, Word, JPG or PNG · up to 5 MB</p>
+      </div>
+
       <button type="submit" class="modal-submit" id="modalSubmitBtn">Send →</button>
       <p class="modal-note">Sent directly to our team — no email app needed.</p>
       <p class="modal-note" id="modalError" style="display:none; color:#C0392B;">Something went wrong sending that. You can email us directly instead: <a href="mailto:footballgateway00@gmail.com" style="color:#C0392B; text-decoration:underline;">footballgateway00@gmail.com</a></p>
@@ -940,6 +953,21 @@
   backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
 
+  const fileInput = document.getElementById('fFile');
+  const fileHint = document.getElementById('fileHint');
+  const FILE_HINT = 'PDF, Word, JPG or PNG · up to 5 MB';
+  function fileOk(f){
+    const okExt = /\.(pdf|docx?|jpe?g|png)$/i.test(f.name);
+    let msg = '';
+    if(!okExt) msg = 'Please choose a PDF, Word, JPG or PNG file.';
+    else if(f.size > 5*1024*1024) msg = 'That file is over 5 MB. Please choose a smaller one.';
+    fileHint.textContent = msg || FILE_HINT;
+    fileHint.classList.toggle('err', !!msg);
+    if(msg) fileInput.value = '';
+    return !msg;
+  }
+  fileInput.addEventListener('change', function(){ if(fileInput.files[0]) fileOk(fileInput.files[0]); else { fileHint.textContent = FILE_HINT; fileHint.classList.remove('err'); } });
+
   const submitBtn = document.getElementById('modalSubmitBtn');
   const modalError = document.getElementById('modalError');
 
@@ -952,23 +980,30 @@
     const ctx = modalForm.dataset.context || "Enquiry";
 
     modalError.style.display = 'none';
+    const file = fileInput.files[0];
+    if(file && !fileOk(file)) return;
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
 
-    const data = new FormData();
-    data.append('name', name);
-    data.append('email', email);
-    data.append('phone', phone);
-    data.append('message', msg);
-    data.append('_subject', `FootballGateway — ${ctx} — ${name}`);
+    function build(withFile){
+      const d = new FormData();
+      d.append('name', name);
+      d.append('email', email);
+      d.append('phone', phone);
+      d.append('message', withFile || !file ? msg : msg + `\n\n[Note: ${name} tried to attach "${file.name}" but it could not be sent. Ask them to email it.]`);
+      d.append('_subject', `FootballGateway — ${ctx} — ${name}`);
+      if(withFile && file) d.append('attachment', file, file.name);
+      return d;
+    }
+    function send(d){
+      return fetch(FORMSPREE_ENDPOINT, { method:'POST', body:d, headers:{ 'Accept':'application/json' } })
+        .then(res => { if(!res.ok) throw new Error('Formspree error'); });
+    }
 
-    fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(res => {
-      if(!res.ok) throw new Error('Formspree error');
+    // Try with the attachment; if the form service rejects the file, still deliver the enquiry.
+    send(build(true))
+    .catch(err => file ? send(build(false)) : Promise.reject(err))
+    .then(() => {
       modalForm.classList.add('hide');
       modalSuccess.classList.add('show');
     })
